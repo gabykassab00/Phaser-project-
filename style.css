@@ -1,0 +1,35 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.land img{
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+.wall,.bush{
+  position: absolute;
+
+}
+.wall img{
+  width: 50px;
+  height: 50px;
+}
+
+.bush img{
+  opacity: 1;
+}
+.treasure{
+  position: absolute;
+}
+.character, .bomb,.coin{
+  position: absolute;
+}
