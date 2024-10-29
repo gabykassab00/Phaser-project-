@@ -349,3 +349,62 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+footer {
+  background-color: #222;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #444;
+}
+
+.footer-top .logo img {
+  width: 120px;
+}
+
+.footer-top .navigation {
+  display: flex;
+  align-items: center;
+}
+
+.footer-top .navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-top .navigation ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.footer-top .navigation ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-top .navigation ul li a:hover {
+  color: #45a049;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.footer-bottom .copyright {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+
