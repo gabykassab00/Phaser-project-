@@ -17,7 +17,7 @@ const config = {
 const game = new Phaser.Game(config);
 
 
-    const mapData = [
+ const mapData = [
   [4, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4],
   [4, 0, 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 4],
   [4, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 2, 2, 2, 0, 0, 1, 1, 0, 1, 1, 0, 4],
@@ -39,7 +39,7 @@ const game = new Phaser.Game(config);
   [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4],
 ];
 
-function preload() {
+    function preload() {
   this.load.image("floor1", "assets/brown-path.png");
   this.load.image("wall", "assets/green-path.png");
   this.load.image("player1", "assets/character.png");
@@ -48,6 +48,7 @@ function preload() {
   this.load.image("player2", "assets/boomb.png");
   this.load.image("star", "assets/star.png");
   this.load.image("goal", "assets/red-flag.png");
+  this.load.image("tree", "assets/tree.png");
 }
 
 function create() {
@@ -75,6 +76,7 @@ function create() {
   }
   this.player = this.physics.add.sprite(50, 550, "player1").setScale(0.4);
   this.goal = this.add.image(32, 0, "goal").setOrigin(0).setScale(0.8);
+      this.cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update() {}
