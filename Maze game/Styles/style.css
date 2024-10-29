@@ -203,7 +203,7 @@ body {
 }
 
 .news-section-title {
-    font-size: 1.8em; /* Increased from 1.1em to 1.4em */
+    font-size: 1.8em;
     margin-bottom: 8px;
     color: #fff;
     text-align: center;
@@ -290,4 +290,53 @@ body {
   font-size: 0.9em;
   line-height: 1.4;
   color: #aaa;
+}
+
+.win-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; 
+}
+.win-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #111;
+  color: #fff;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.text-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.text-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.text-container p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.text-container button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
