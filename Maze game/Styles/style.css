@@ -202,6 +202,13 @@ body {
   margin-bottom: 20px;
 }
 
+.news-section-title {
+    font-size: 1.8em; /* Increased from 1.1em to 1.4em */
+    margin-bottom: 8px;
+    color: #fff;
+    text-align: center;
+}
+
 .latest-news-header {
   display: flex;
   justify-content: space-between;
