@@ -4,19 +4,19 @@
     box-sizing: border-box;
   }
 
-body {
+  body {
     background-color: #111;
     color: #ffffff;
     margin: 0;
     font-family: Arial, sans-serif;    
   }  
 
-.navbar {
+  .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #000;
-    padding: 10px 20px;
+    padding: 20px 30px;
     font-family: Arial, sans-serif;
   }
   
