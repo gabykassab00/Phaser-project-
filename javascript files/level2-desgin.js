@@ -39,8 +39,8 @@ const mapData = [
 ];
 
 function preload() {
-  this.load.image("floor", "assets/screen.png");
-  this.load.image("wall", "assets/tileset.png");
+  this.load.image("floor", "assets/brown-path.png");
+  this.load.image("wall", "assets/green-path.png");
   this.load.image("player", "assets/character.png");
 }
 
