@@ -77,6 +77,8 @@ function create() {
   this.player = this.physics.add.sprite(50, 550, "player1").setScale(0.4);
   this.goal = this.add.image(32, 0, "goal").setOrigin(0).setScale(0.8);
       this.cursors = this.input.keyboard.createCursorKeys();
+       this.physics.add.collider(this.player, this.walls);
+        this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
 }
 
 function update() {}
