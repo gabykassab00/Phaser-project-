@@ -92,6 +92,7 @@ body {
     gap: 30px;
     max-width: 1200px;
     margin: auto;
+    margin-bottom: 170px;
   }
   
   .hero-img {
@@ -193,6 +194,7 @@ body {
 .news-section {
   max-width: 1200px;
   margin: 40px auto;
+  margin-top: 100px;
   padding: 0 20px;
 }
 
@@ -295,8 +297,10 @@ body {
 .win-container {
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 100px;
   padding: 0 20px; 
 }
+
 .win-section {
   display: flex;
   justify-content: space-between;
