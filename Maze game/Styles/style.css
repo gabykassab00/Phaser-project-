@@ -110,7 +110,7 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    gap: 20px;
+    gap: 30px;
 }
 
 .hero-content h2 {
@@ -140,7 +140,7 @@
 
 .button-container {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .play-btn:hover {
@@ -193,7 +193,7 @@
 
 .card-image {
     width: 100%;
-    height: auto;
+    height: 400px;
     border-radius: 0 0 8px 8px;
 }
 
@@ -263,7 +263,7 @@
 
 .news-image {
   width: 100%;
-  height: auto;
+  height: 300px;
 }
 
 .news-info {
