@@ -16,7 +16,6 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-
  const mapData = [
   [4, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4],
   [4, 0, 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 4],
@@ -78,11 +77,11 @@ function create() {
       this.anims.create({ key: 'right', frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }), frameRate: 10, repeat: -1 });
       this.goal = this.add.image(32, 0, "goal").setOrigin(0).setScale(0.8);
       this.cursors = this.input.keyboard.createCursorKeys();
-
-
-
       this.physics.add.collider(this.player, this.walls);
       this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
 }
-
+function reachGoal(player, goal) {
+        alert("Congratulations! You've reached the goal!");
+        this.scene.restart();
+    }
 function update() {}
