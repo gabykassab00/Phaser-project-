@@ -84,4 +84,10 @@ function reachGoal(player, goal) {
         alert("Congratulations! You've reached the goal!");
         this.scene.restart();
     }
+    function canMoveTo(x, y) {
+        const tileSize = 32;
+        const col = Math.floor(x / tileSize);
+        const row = Math.floor(y / tileSize);
+        return mapData[row] && mapData[row][col] === 0;
+    }
 function update() {}
