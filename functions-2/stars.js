@@ -27,3 +27,9 @@ function openPaths() {
     }
   } 
 }
+
+function checkDoorUnlock(player, door) {
+    if (score >= requiredStars) {
+        door.disableBody(true, true);
+    }
+}
