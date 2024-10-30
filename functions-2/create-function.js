@@ -5,3 +5,5 @@
 
 
     this.physics.add.collider(player, this.walls);
+
+    cursors = this.input.keyboard.createCursorKeys();
