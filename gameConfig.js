@@ -14,6 +14,7 @@ const game = new Phaser.Game(config);
 function preload() {
     this.load.image("floor", "assets/brown-path.png");
     this.load.image("path", "assets/green-path.png");
+    this.load.image("star", "assets/star.png");
     this.load.image("flower", "assets/flower-path.png");
     this.load.image("water", "assets/water.png");
     this.load.image("tree", "assets/tree.png");
