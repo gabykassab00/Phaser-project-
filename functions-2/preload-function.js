@@ -6,3 +6,11 @@
       this.load.image("door", "assets/silver-path.png");
       this.load.spritesheet("dude", "assets/dude.png", { frameWidth: 32, frameHeight: 48 });
     }
+
+    
+    function canMoveTo(scene, x, y) {
+      const tileSize = 32;
+      const col = Math.floor(x / tileSize);
+      const row = Math.floor(y / tileSize);
+      return mapData[row] && mapData[row][col] === 0;
+    }
