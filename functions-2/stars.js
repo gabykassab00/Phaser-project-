@@ -17,3 +17,13 @@
     openPaths.call(this);
   }
 }
+
+function openPaths() {
+  for (let row = 0; row < mapData.length; row++) {
+    for (let col = 0; col < mapData[row].length; col++) {
+      if (mapData[row][col] === 2) {
+        mapData[row][col] = 0;
+      }
+    }
+  } 
+}
