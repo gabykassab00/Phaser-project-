@@ -6,4 +6,7 @@
 
     this.physics.add.collider(player, this.walls);
 
+    this.stars = this.physics.add.group();
+    createStars(this);
+    this.physics.add.overlap(player, this.stars, collectStar, null, this);
     cursors = this.input.keyboard.createCursorKeys();
