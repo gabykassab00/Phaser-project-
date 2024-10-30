@@ -41,7 +41,7 @@ function create() {
     }
 
     createPlayer(this);
-    this.goal = this.physics.add.sprite(32, 550, "goal").setOrigin(0).setScale(0.8).setImmovable(true);
+    this.goal = this.physics.add.sprite(32, 500, "goal").setOrigin(0).setScale(0.8).setImmovable(true);
     this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
     startTimer.call(this);
 
