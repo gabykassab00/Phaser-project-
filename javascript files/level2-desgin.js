@@ -40,16 +40,14 @@ const game = new Phaser.Game(config);
 ];
 
     function preload() {
-  this.load.image("floor1", "assets/brown-path.png");
-  this.load.image("wall", "assets/green-path.png");
-  this.load.image("player1", "assets/character.png");
-  this.load.image("floor2", "assets/flower-path.png");
-  this.load.image("water", "assets/water.png");
-  this.load.image("player2", "assets/boomb.png");
-  this.load.image("star", "assets/star.png");
-  this.load.image("goal", "assets/red-flag.png");
-  this.load.image("tree", "assets/tree.png");
-}
+        this.load.image("floor", "assets/brown-path.png");
+        this.load.image("path", "assets/green-path.png");
+        this.load.image("flower", "assets/flower-path.png");
+        this.load.image("water", "assets/water.png");
+        this.load.image("tree", "assets/tree.png");
+        this.load.image("goal", "assets/red-flag.png");
+        this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    }
 
 function create() {
   const tileSize = 32;
@@ -74,11 +72,11 @@ function create() {
       }
     }
   }
-  this.player = this.physics.add.sprite(50, 550, "player1").setScale(0.4);
-  this.goal = this.add.image(32, 0, "goal").setOrigin(0).setScale(0.8);
+      this.player = this.physics.add.sprite(50, 550, "player1").setScale(0.4);
+      this.goal = this.add.image(32, 0, "goal").setOrigin(0).setScale(0.8);
       this.cursors = this.input.keyboard.createCursorKeys();
-       this.physics.add.collider(this.player, this.walls);
-        this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
+      this.physics.add.collider(this.player, this.walls);
+      this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
 }
 
 function update() {}
