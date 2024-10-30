@@ -9,3 +9,11 @@
         scene.stars.create(x, y, "star").setOrigin(0);
       }
     }
+ function collectStar(player, star) {
+  star.disableBody(true, true);
+  score += 10;
+  scoreText.setText(`Score: ${score}`);
+  if (score >= requiredScore) {
+    openPaths.call(this);
+  }
+}
