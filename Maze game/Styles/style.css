@@ -369,11 +369,6 @@ footer {
   border-bottom: 1px solid #444;
 }
 
-.footer-top .logo img {
-  border-radius: 10px;
-  width: 120px;
-}
-
 .footer-top .navigation {
   display: flex;
   align-items: center;
