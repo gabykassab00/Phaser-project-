@@ -318,6 +318,7 @@
 
 .image-container {
   flex: 1;
+  margin-right: 40px;
 }
 
 .image-container img {
