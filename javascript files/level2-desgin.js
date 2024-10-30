@@ -125,5 +125,36 @@ function update() {
             this.player.anims.play('turn');
             moving = true;
         }
+        function update() {
+        if (gameOver || moving) return;
 
+        const tileSize = 32;
+        let newX = this.player.x;
+        let newY = this.player.y;
+
+        if (this.cursors.left.isDown && canMoveTo(this.player.x - tileSize, this.player.y)) {
+            newX -= tileSize;
+            this.player.anims.play('left', true);
+            moving = true;
+        } else if (this.cursors.right.isDown && canMoveTo(this.player.x + tileSize, this.player.y)) {
+            newX += tileSize;
+            this.player.anims.play('right', true);
+            moving = true;
+        } else if (this.cursors.up.isDown && canMoveTo(this.player.x, this.player.y - tileSize)) {
+            newY -= tileSize;
+            this.player.anims.play('turn');
+            moving = true;
+        } else if (this.cursors.down.isDown && canMoveTo(this.player.x, this.player.y + tileSize)) {
+            newY += tileSize;
+            this.player.anims.play('turn');
+            moving = true;
+        }
+        if (moving) {
+            this.player.setPosition(newX, newY);
+            this.input.keyboard.once('keyup', () => {
+                moving = false;
+                this.player.anims.play('turn');
+            });
+        }
+    }
     }
