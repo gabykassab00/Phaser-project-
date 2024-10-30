@@ -43,6 +43,13 @@ function create() {
     this.goal = this.physics.add.sprite(32, 550, "goal").setOrigin(0).setScale(0.8).setImmovable(true);
     this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
     startTimer.call(this);
+
+      scoreText = this.add.text(550, 16, 'Score: 0', {
+        fontSize: '32px',
+        fill: 'black'
+    });
+
+    spawnStars.call(this);
 }
 
 function update() {
