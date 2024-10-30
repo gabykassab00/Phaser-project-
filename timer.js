@@ -4,7 +4,7 @@ let timerEvent;
 function startTimer() {
    
     timerText = this.add.text(16, 16, 'Time: 0', {
-        fontSize: '32px',
+        fontSize: '15px',
         fill: '#ffffff'
     });
 
