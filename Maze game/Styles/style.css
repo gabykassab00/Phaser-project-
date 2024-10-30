@@ -266,8 +266,9 @@
 }
 
 .news-info {
-  padding: 15px;
+  padding: 20px;
   color: #ddd;
+  text-align: center;
 }
 
 .tag {
