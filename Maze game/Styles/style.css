@@ -370,6 +370,7 @@ footer {
 }
 
 .footer-top .logo img {
+  border-radius: 10px;
   width: 120px;
 }
 
