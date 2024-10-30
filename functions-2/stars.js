@@ -33,3 +33,12 @@ function checkDoorUnlock(player, door) {
         door.disableBody(true, true);
     }
 }
+
+ function reachGoal() {
+      if (score >= requiredScore) {
+        gameOver = true;
+        scoreText.setText("Congratulations! You've reached the goal!");
+      } else {
+        console.log("Collect enough stars to finish the game!");
+      }
+    }
