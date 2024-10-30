@@ -80,14 +80,50 @@ function create() {
       this.physics.add.collider(this.player, this.walls);
       this.physics.add.overlap(this.player, this.goal, reachGoal, null, this);
 }
+
 function reachGoal(player, goal) {
         alert("Congratulations! You've reached the goal!");
         this.scene.restart();
     }
-    function canMoveTo(x, y) {
+
+
+function canMoveTo(x, y) {
         const tileSize = 32;
         const col = Math.floor(x / tileSize);
         const row = Math.floor(y / tileSize);
         return mapData[row] && mapData[row][col] === 0;
     }
-function update() {}
+
+
+
+    let gameOver = false;
+    let moving = false;
+
+
+
+function update() {
+        if (gameOver || moving) return;
+
+        const tileSize = 32;
+        let newX = this.player.x;
+        let newY = this.player.y;
+
+        if (this.cursors.left.isDown && canMoveTo(this.player.x - tileSize, this.player.y)) {
+            newX -= tileSize;
+            this.player.anims.play('left', true);
+            moving = true;
+        } else if (this.cursors.right.isDown && canMoveTo(this.player.x + tileSize, this.player.y)) {
+            newX += tileSize;
+            this.player.anims.play('right', true);
+            moving = true;
+        } else if (this.cursors.up.isDown && canMoveTo(this.player.x, this.player.y - tileSize)) {
+            newY -= tileSize;
+            this.player.anims.play('turn');
+            moving = true;
+        } else if (this.cursors.down.isDown && canMoveTo(this.player.x, this.player.y + tileSize)) {
+            newY += tileSize;
+            this.player.anims.play('turn');
+            moving = true;
+        }
+
+    }
