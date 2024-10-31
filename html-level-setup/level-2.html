@@ -52,8 +52,8 @@
 
 
      function preload() {
-    this.load.image("floor", "../assets/brown-path.png");
-      this.load.image("path", "../assets/green-path.png");
+    this.load.image("floor", "../assets/silver-path.png");
+      this.load.image("path", "../assets/water.png");
       this.load.image("star", "../assets/star.png");
       this.load.image("redFlag", "../assets/red-flag.png");
       this.load.image("door", "../assets/silver-path.png");
@@ -75,8 +75,7 @@ function create(){
           if (tileType === 0) this.add.image(x, y, "path").setOrigin(0);
           else if (tileType === 1) this.walls.create(x, y, "floor").setOrigin(0).refreshBody();
           else if (tileType === 2) this.walls.create(x, y, "door").setOrigin(0).refreshBody();
-          else if (tileType === 3) this.add.image(x, y, "water").setOrigin(0);
-          else if (tileType === 4) this.add.image(x, y, "flower").setOrigin(0);
+          else if (tileType === 3) this.add.image(x, y, "flower").setOrigin(0);
         }
       }
         player = this.physics.add.sprite(50, 50, "dude");
@@ -155,16 +154,19 @@ function update() {
     }
 
      function createStars(scene) {
-      const tileSize = 32;
-      for (let i = 0; i < 10; i++) {
+    const tileSize = 32;
+    const numberOfStars = 20; 
+
+    for (let i = 0; i < numberOfStars; i++) {
         let x, y;
         do {
-          x = Phaser.Math.Between(0, 23) * tileSize;
-          y = Phaser.Math.Between(0, 17) * tileSize;
+            x = Phaser.Math.Between(0, 50) * tileSize;
+            y = Phaser.Math.Between(0, 17) * tileSize;
         } while (mapData[y / tileSize][x / tileSize] !== 0);
+
         scene.stars.create(x, y, "star").setOrigin(0);
-      }
     }
+}
 
   function collectStar(player, star) {
   star.disableBody(true, true);
@@ -200,7 +202,7 @@ function checkDoorUnlock(player, door) {
       }
     }
         function startTimer() {
-    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "black" });
+    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "white" });
 
     timerEvent = this.time.addEvent({
         delay: 1000,
