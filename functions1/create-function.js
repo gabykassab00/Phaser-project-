@@ -14,3 +14,4 @@
     scoreText = this.add.text(16, 16, "Score: 0", { fontSize: "32px", fill: "#fff" });
     redFlag = this.physics.add.sprite(750, 550, "redFlag");
     this.physics.add.overlap(player, redFlag, reachGoal, null, this);
+          startTimer.call(this);
