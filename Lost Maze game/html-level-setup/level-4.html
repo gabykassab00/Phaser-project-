@@ -6,6 +6,47 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
     <title>Level 4</title>
     <style>
+       body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #491b1b;
+        }
+         .game-title {
+      text-align: center;
+      font-size: 48px;
+      color: #ff6347;  
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+ .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;  
+      width: 100%;      
+    }
+    .button-container a {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px 0;   
+      width: 150px;         
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;  
+    }
+    .button-container a:hover {
+      background-color: #45a049;
+    }
         .popup {
             display: none; 
             position: fixed; 
@@ -39,6 +80,12 @@
         </div>
     </div>
 </div>
+ <div class="button-container">
+  <h1 class="game-title">LOST MAZE</h1>
+    <a href="http://localhost/maze.git/Phaser-project-/Lost%20Maze%20game/html-level-setup/level-1.html" id="nextLevel">NEXT LEVEL</a>
+    <a href="javascript:void(0);" onclick="reloadGame()">RELOAD</a>
+    <a href="http://localhost/maze.git/Phaser-project-/Lost%20Maze%20game/html-level-setup/level-3.html" id="previousLevel">PREVIOUS</a>
+  </div>
     <script>
         const config = {
       type: Phaser.AUTO,

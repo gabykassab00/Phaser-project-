@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
-    <title>Level 2</title>
+    <title>Level 3</title>
     <style>
+       .game-title {
+      text-align: center;
+      font-size: 48px;
+      color: #ff6347;  
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+       body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #491b1b;
+        }
+ .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;  
+      width: 100%;      
+    }
+    .button-container a {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px 0;   
+      width: 150px;         
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;  
+    }
+    .button-container a:hover {
+      background-color: #45a049;
+    }
         .popup {
             display: none; 
             position: fixed; 
@@ -32,13 +73,19 @@
     </style>
 </head>
 <body>
-    <div id="popup" class="popup">
+   <div id="popup" class="popup">
         <div class="popupContent">
             <p id="popupMessage">Congratulations! You've reached the goal!</p>
             <button onclick="closePopup()">Reload</button>
         </div>
     </div>
 </div>
+ <div class="button-container">
+  <h1 class="game-title">LOST MAZE</h1>
+    <a href="http://localhost/maze.git/Phaser-project-/Lost%20Maze%20game/html-level-setup/level-4.html" id="nextLevel">NEXT LEVEL</a>
+    <a href="javascript:void(0);" onclick="reloadGame()">RELOAD</a>
+    <a href="http://localhost/maze.git/Phaser-project-/Lost%20Maze%20game/html-level-setup/level-2.html" id="previousLevel">PREVIOUS</a>
+  </div>
     <script>
         const config = {
       type: Phaser.AUTO,
@@ -60,37 +107,38 @@
     let timerText; 
     let timerEvent;
 
-     const mapData = [
+      const mapData = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1],
-    [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1]
 ];
 
 
 
+
      function preload() {
-       this.load.image("floor", "../assets/silver-path.png");
-      this.load.image("path", "../assets/stone.png");
+    this.load.image("floor", "../assets/stone-2.png");
+      this.load.image("path", "../assets/green-path.png");
       this.load.image("star", "../assets/star.png");
       this.load.image("redFlag", "../assets/gold.png");
       this.load.image("door", "../assets/silver-path.png");
-      this.load.image("water", "../assets/water.png");
-       this.load.image("flower", "../assets/flower-path.png");
+       this.load.image("green", "../assets/green-path.png");
       this.load.spritesheet("dude", "../assets/dude.png", { frameWidth: 32, frameHeight: 48 });
     }
 
@@ -107,8 +155,6 @@ function create(){
           if (tileType === 0) this.add.image(x, y, "path").setOrigin(0);
           else if (tileType === 1) this.walls.create(x, y, "floor").setOrigin(0).refreshBody();
           else if (tileType === 2) this.walls.create(x, y, "door").setOrigin(0).refreshBody();
-          else if (tileType === 3) this.add.image(x, y, "water").setOrigin(0);
-          else if (tileType === 4) this.add.image(x, y, "flower").setOrigin(0);
         }
       }
         player = this.physics.add.sprite(50, 50, "dude");
@@ -142,6 +188,9 @@ function create(){
       this.physics.add.overlap(player, redFlag, reachGoal, null, this);
 
       this.physics.add.overlap(player, this.stars, collectStar, null, this);
+
+      /*redFlag = this.physics.add.sprite(705, 450, "green");
+      this.physics.add.overlap(player, this.door, checkDoorUnlock, null, this);*/
 
       startTimer.call(this);
 
@@ -188,16 +237,19 @@ function update() {
     }
 
      function createStars(scene) {
-      const tileSize = 32;
-      for (let i = 0; i < 10; i++) {
+    const tileSize = 32;
+    const numberOfStars = 20; 
+
+    for (let i = 0; i < numberOfStars; i++) {
         let x, y;
         do {
-          x = Phaser.Math.Between(0, 23) * tileSize;
-          y = Phaser.Math.Between(0, 17) * tileSize;
+            x = Phaser.Math.Between(0, 50) * tileSize;
+            y = Phaser.Math.Between(0, 17) * tileSize;
         } while (mapData[y / tileSize][x / tileSize] !== 0);
+
         scene.stars.create(x, y, "star").setOrigin(0);
-      }
     }
+}
 
   function collectStar(player, star) {
   star.disableBody(true, true);
@@ -210,21 +262,28 @@ function update() {
 }
 
 function openPaths() {
-  for (let row = 0; row < mapData.length; row++) {
-    for (let col = 0; col < mapData[row].length; col++) {
-      if (mapData[row][col] === 2) {
-        mapData[row][col] = 0;
+  if (score >= requiredScore) {
+    for (let row = 0; row < mapData.length; row++) {
+      for (let col = 0; col < mapData[row].length; col++) {
+        if (mapData[row][col] === 2) {
+          mapData[row][col] = 0;
+        
+          const x = col * 32;
+          const y = row * 32;
+          this.add.image(x, y, "path").setOrigin(0); 
+        }
       }
     }
-  } 
+  }
 }
+
 function checkDoorUnlock(player, door) {
     if (score >= requiredStars) {
         door.disableBody(true, true);
     }
 }
 
-     function reachGoal(player, goal) {
+ function reachGoal(player, goal) {
             gameOver = true;
             timerEvent.remove(false);
             document.getElementById("popupMessage").innerText = `Congratulations! You've reached the goal!\nScore: ${score}\nTime: ${elapsedTime} seconds`;
@@ -236,7 +295,7 @@ function checkDoorUnlock(player, door) {
             window.location.reload(); 
         }
         function startTimer() {
-    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "black" });
+    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "white" });
 
     timerEvent = this.time.addEvent({
         delay: 1000,
