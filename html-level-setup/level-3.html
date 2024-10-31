@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <title>Level 3</title>
+    <style>
+        .popup {
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.8); 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 1000; 
+        }
+        .popupContent {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px; 
+            border-radius: 10px; 
+            text-align: center; 
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px; 
+        }
+    </style>
+</head>
+<body>
+   <div id="popup" class="popup">
+        <div class="popupContent">
+            <p id="popupMessage">Congratulations! You've reached the goal!</p>
+            <button onclick="closePopup()">Reload</button>
+        </div>
+    </div>
+</div>
+    <script>
+        const config = {
+      type: Phaser.AUTO,
+      width: 800,
+      height: 600,
+      backgroundColor: "#242424",
+      scene: { preload, create, update },
+      physics: { default: "arcade", arcade: { debug: false } },
+    };
+    const game = new Phaser.Game(config);
+    let player, cursors;
+    let moving = false;
+    let gameOver = false;
+    let score = 0;
+    let scoreText;
+    const requiredScore = 50;
+    let door, redFlag;
+    let elapsedTime = 0; 
+    let timerText; 
+    let timerEvent;
+
+      const mapData = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1]
+];
+
+
+
+
+     function preload() {
+    this.load.image("floor", "../assets/stone-2.png");
+      this.load.image("path", "../assets/green-path.png");
+      this.load.image("star", "../assets/star.png");
+      this.load.image("redFlag", "../assets/gold.png");
+      this.load.image("door", "../assets/silver-path.png");
+       this.load.image("green", "../assets/green-path.png");
+      this.load.spritesheet("dude", "../assets/dude.png", { frameWidth: 32, frameHeight: 48 });
+    }
+
+function create(){
+    const tileSize = 32;
+
+          this.walls = this.physics.add.staticGroup();
+      for (let row = 0; row < mapData.length; row++) {
+        for (let col = 0; col < mapData[row].length; col++) {
+          let tileType = mapData[row][col];
+          let x = col * tileSize;
+          let y = row * tileSize;
+
+          if (tileType === 0) this.add.image(x, y, "path").setOrigin(0);
+          else if (tileType === 1) this.walls.create(x, y, "floor").setOrigin(0).refreshBody();
+          else if (tileType === 2) this.walls.create(x, y, "door").setOrigin(0).refreshBody();
+        }
+      }
+        player = this.physics.add.sprite(50, 50, "dude");
+        this.physics.add.collider(player, this.walls);
+      this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4 } ],
+        frameRate: 20
+    });
+
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+    });
+      this.stars = this.physics.add.group();
+      createStars(this);
+
+      scoreText = this.add.text(16, 16, "Score: 0", { fontSize: "32px", fill: "#fff" });
+
+      redFlag = this.physics.add.sprite(715, 520, "redFlag");
+      redFlag.setDisplaySize(50, 50);
+      this.physics.add.overlap(player, redFlag, reachGoal, null, this);
+
+      this.physics.add.overlap(player, this.stars, collectStar, null, this);
+
+      /*redFlag = this.physics.add.sprite(705, 450, "green");
+      this.physics.add.overlap(player, this.door, checkDoorUnlock, null, this);*/
+
+      startTimer.call(this);
+
+      cursors = this.input.keyboard.createCursorKeys();
+}
+function update() {
+      if (gameOver || moving) return;
+
+      const tileSize = 32;
+      let newX = player.x;
+      let newY = player.y;
+
+      if (cursors.left.isDown && canMoveTo(this, player.x - tileSize, player.y)) {
+        newX -= tileSize;
+        player.anims.play("left", true);
+        moving = true;
+      } else if (cursors.right.isDown && canMoveTo(this, player.x + tileSize, player.y)) {
+        newX += tileSize;
+        player.anims.play("right", true);
+        moving = true;
+      } else if (cursors.up.isDown && canMoveTo(this, player.x, player.y - tileSize)) {
+        newY -= tileSize;
+        player.anims.play("turn");
+        moving = true;
+      } else if (cursors.down.isDown && canMoveTo(this, player.x, player.y + tileSize)) {
+        newY += tileSize;
+        player.anims.play("turn");
+        moving = true;
+      }
+
+      if (moving) {
+        player.setPosition(newX, newY);
+        this.input.keyboard.once("keyup", () => {
+          moving = false;
+          player.anims.play("turn");
+        });
+      }
+    }
+    function canMoveTo(scene, x, y) {
+      const tileSize = 32;
+      const col = Math.floor(x / tileSize);
+      const row = Math.floor(y / tileSize);
+      return mapData[row] && mapData[row][col] === 0;
+    }
+
+     function createStars(scene) {
+    const tileSize = 32;
+    const numberOfStars = 20; 
+
+    for (let i = 0; i < numberOfStars; i++) {
+        let x, y;
+        do {
+            x = Phaser.Math.Between(0, 50) * tileSize;
+            y = Phaser.Math.Between(0, 17) * tileSize;
+        } while (mapData[y / tileSize][x / tileSize] !== 0);
+
+        scene.stars.create(x, y, "star").setOrigin(0);
+    }
+}
+
+  function collectStar(player, star) {
+  star.disableBody(true, true);
+  score += 10;
+  scoreText.setText(`Score: ${score}`);
+
+  if (score >= requiredScore) {
+    openPaths.call(this); 
+  }
+}
+
+function openPaths() {
+  if (score >= requiredScore) {
+    for (let row = 0; row < mapData.length; row++) {
+      for (let col = 0; col < mapData[row].length; col++) {
+        if (mapData[row][col] === 2) {
+          mapData[row][col] = 0;
+        
+          const x = col * 32;
+          const y = row * 32;
+          this.add.image(x, y, "path").setOrigin(0); 
+        }
+      }
+    }
+  }
+}
+
+function checkDoorUnlock(player, door) {
+    if (score >= requiredStars) {
+        door.disableBody(true, true);
+    }
+}
+
+ function reachGoal(player, goal) {
+            gameOver = true;
+            timerEvent.remove(false);
+            document.getElementById("popupMessage").innerText = `Congratulations! You've reached the goal!\nScore: ${score}\nTime: ${elapsedTime} seconds`;
+            document.getElementById("popup").style.display = "flex"; 
+        }
+
+  function closePopup() {
+            document.getElementById("popup").style.display = "none"; 
+            window.location.reload(); 
+        }
+        function startTimer() {
+    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "white" });
+
+    timerEvent = this.time.addEvent({
+        delay: 1000,
+        callback: updateTimer,
+        callbackScope: this,
+        loop: true
+    });
+}
+
+function updateTimer() {
+    elapsedTime++;
+    timerText.setText("Time: " + elapsedTime);
+}
+    </script>
+</body>
+</html>
