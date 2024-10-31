@@ -27,8 +27,5 @@ window.onload = function() {
     const characterImagePath = localStorage.getItem('selectedCharacter');
     if (characterImagePath) {
         document.getElementById('characterImage').src = characterImagePath;
-    } else {
-        alert("No character selected! Redirecting to character selection.");
-        window.location.href = 'game.html'; 
     }
 };

@@ -15,4 +15,8 @@ window.addEventListener('scroll', function () {
 
 })
 
+document.getElementById("enter-button").onclick = function () {
+    window.location.href = "https://www.facebook.com";
+};
+
 
