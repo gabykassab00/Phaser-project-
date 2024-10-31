@@ -16,7 +16,7 @@ window.addEventListener('scroll', function () {
 })
 
 document.getElementById("enter-button").onclick = function () {
-    window.location.href = "https://www.facebook.com";
+    window.location.href = "http://127.0.0.1:5500/final-project-gaby/gaby-homepage-game/index.html";
 };
 
 
