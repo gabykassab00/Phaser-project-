@@ -24,6 +24,9 @@
     let scoreText;
     const requiredScore = 50;
     let door, redFlag;
+    let elapsedTime = 0; 
+    let timerText; 
+    let timerEvent;
 
       const mapData = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -92,6 +95,8 @@ function create(){
 
       this.physics.add.overlap(player, this.stars, collectStar, null, this);
 
+      startTimer.call(this);
+
       cursors = this.input.keyboard.createCursorKeys();
 }
 function update() {
@@ -150,7 +155,7 @@ function update() {
   star.disableBody(true, true);
   score += 10;
   scoreText.setText(`Score: ${score}`);
-  
+
   if (score >= requiredScore) {
     openPaths.call(this); 
   }
@@ -179,6 +184,21 @@ function checkDoorUnlock(player, door) {
         console.log("Collect enough stars to finish the game!");
       }
     }
+        function startTimer() {
+    timerText = this.add.text(630, 16, "Timer: 0", { fontSize: "30px", fill: "black" });
+
+    timerEvent = this.time.addEvent({
+        delay: 1000,
+        callback: updateTimer,
+        callbackScope: this,
+        loop: true
+    });
+}
+
+function updateTimer() {
+    elapsedTime++;
+    timerText.setText("Time: " + elapsedTime);
+}
     </script>
 </body>
 </html>
