@@ -86,10 +86,10 @@
 
 
      function preload() {
-    this.load.image("floor", "../assets/silver-path.png");
-      this.load.image("path", "../assets/water.png");
+    this.load.image("floor", "../assets/stone-2.png");
+      this.load.image("path", "../assets/green-path.png");
       this.load.image("star", "../assets/star.png");
-      this.load.image("redFlag", "../assets/red-flag.png");
+      this.load.image("redFlag", "../assets/gold.png");
       this.load.image("door", "../assets/silver-path.png");
        this.load.image("green", "../assets/green-path.png");
       this.load.spritesheet("dude", "../assets/dude.png", { frameWidth: 32, frameHeight: 48 });
@@ -137,12 +137,13 @@ function create(){
       scoreText = this.add.text(16, 16, "Score: 0", { fontSize: "32px", fill: "#fff" });
 
       redFlag = this.physics.add.sprite(715, 520, "redFlag");
+      redFlag.setDisplaySize(50, 50);
       this.physics.add.overlap(player, redFlag, reachGoal, null, this);
 
       this.physics.add.overlap(player, this.stars, collectStar, null, this);
 
-      redFlag = this.physics.add.sprite(705, 450, "green");
-      this.physics.add.overlap(player, this.door, checkDoorUnlock, null, this);
+      /*redFlag = this.physics.add.sprite(705, 450, "green");
+      this.physics.add.overlap(player, this.door, checkDoorUnlock, null, this);*/
 
       startTimer.call(this);
 

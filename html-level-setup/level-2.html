@@ -84,10 +84,10 @@
 
 
      function preload() {
-       this.load.image("floor", "../assets/brown-path.png");
-      this.load.image("path", "../assets/green-path.png");
+       this.load.image("floor", "../assets/silver-path.png");
+      this.load.image("path", "../assets/stone.png");
       this.load.image("star", "../assets/star.png");
-      this.load.image("redFlag", "../assets/red-flag.png");
+      this.load.image("redFlag", "../assets/gold.png");
       this.load.image("door", "../assets/silver-path.png");
       this.load.image("water", "../assets/water.png");
        this.load.image("flower", "../assets/flower-path.png");
@@ -137,7 +137,8 @@ function create(){
 
       scoreText = this.add.text(16, 16, "Score: 0", { fontSize: "32px", fill: "#fff" });
 
-      redFlag = this.physics.add.sprite(750, 550, "redFlag");
+      redFlag = this.physics.add.sprite(715, 520, "redFlag");
+      redFlag.setDisplaySize(50, 50);
       this.physics.add.overlap(player, redFlag, reachGoal, null, this);
 
       this.physics.add.overlap(player, this.stars, collectStar, null, this);
