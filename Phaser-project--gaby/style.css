@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5em 5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99999;
+}
+
+#header .logo {
+    color: #002431;
+    font-weight: 800;
+    font-size: 2.5em;
+    text-decoration: none;
+}
+
+#header ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#header ul li {
+    list-style: none;
+    margin: 0px 10px;
+}
+
+#header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #003549;
+    border-radius: 20px;
+}
+
+#header ul li a:hover,
+#header ul li a.active {
+    background: #003549;
+    color: white;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to top, #df2a0a, transparent);
+    z-index: 10;
+    margin-bottom: -250px;
+}
+
+section img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+section img#bird2{
+    margin-top: 200px;
+    margin-left: 800px;
+    width: 40px;
+    height: auto;
+}
+
+section img#bird1{
+    margin-top: 200px;
+    margin-left: 400px;
+    width: 40px;
+    height: auto;
+}
+
+section img#water{
+    margin-top: 500px;
+    width: 1500px;
+    height: auto;
+    margin-left: -100px;
+}
+section #text span {
+    font-size: 10.2em;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: black;
+}
+
+section #text {
+    position: absolute;
+    color:black;
+    font-size: 6vw;
+    text-align: center;
+    line-height: 0.55em;
+    font-family: 'Rancho', cursive;
+    transform: translateY(-50%);
+    top: 50%;
+    z-index: 20;
+}
+
+
+#explore {
+    text-decoration: none;
+    padding: 8px 25px;
+    background: white;
+    color: #003549;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    transform: translateY(100px);
+}
+
+#explore:hover {
+    background: #003549;
+    color: white;
+}
+
+#top {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: #4faa2e;
+    bottom: 10%;
+    right: 5%;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 25px;
+    border-radius: 50%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-Left: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 1em;
+    margin-bottom: 2%;
+    
+}
+
+.sec {
+    position: relative;
+    padding: 10%;
+    background: rgb(77, 70, 70);
+    padding-bottom: 15%;
+    z-index: 50;
+    overflow: hidden;
+    margin-top: 200px;
+}
+
+.sec h2 {
+    font-size: 3.5em;
+}
+
+.sec #name {
+    font-size: 1.5em;
+    font-family: 'Rancho', cursive;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.sec h3 {
+    font-size: 1.8em;
+    margin: 2%;
+}
+
+.sec h4 {
+    font-size: 1.2em;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sec p {
+    margin: 10px 20px 40px;
+}
+
+.sec ul {
+    margin: 0 5%;
+}
+
+.sec ul li {
+    margin: 2%;
+}
+
+
+.fishes {
+    position: absolute;
+    opacity: 0.8;
+}
+
+#fish1 {
+    top: 0%;
+}
+
+#fish2 {
+    top: 32%;
+}
+
+#fish3 {
+    top: 60%;
+}
+
+#fish4 {
+    top: 87%;
+}
+
+#seabed {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    opacity: 1;
+}
+
+.undersea {
+    position: absolute;
+    opacity: 1;
+}
+
+#sea1 {
+    top: 10%;
+    left: 1%;
+    width: 20%;
+}
+
+#sea2 {
+    top: 16%;
+    right: 1%;
+    width: 10%;
+}
+
+#sea3 {
+    top: 40%;
+    left: 0;
+    width: 12%;
+}
+
+#sea4 {
+    top: 50%;
+    right: 0;
+    width: 12%;
+}
+
+#sea5 {
+    top: 70%;
+    left: 1%;
+    width: 10%;
+}
+
+#sea6 {
+    top: 75%;
+    right: 2%;
+    width: 6%;
+}
+
+#sea7 {
+    top: 90%;
+    right: 70%;
+    width: 10%;
+}
+
+#sea8 {
+    bottom: 0;
+    left: 55%;
+    width: 10%;
+    z-index: 100;
+}
+
+#spotlight1{
+    width: 1000px;
+    height: 300px;
+    opacity: 0.5;
+}
+#spttext{
+    font-size: 20px;
+    font-weight: bold
+}
+#spth{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    width: 80%; 
+    margin: 20px auto; 
+}
+
+#explr {
+    margin-left: 400px;
+    padding: 12px 30px; 
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #4ae60d, #07e91a); 
+    border: none;
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+#explr:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f); 
+    transform: translateY(-3px); 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+#explr:active {
+    transform: translateY(1px); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+#entermap{
+    width: 1000px;
+    height: 450px;
+    border-radius: 15px;
+    opacity: 0.6;
+    z-index: -1;
+}
+#enter{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 1;
+    width: 350px;
+    height: 350px;
+    margin-left: -750px;
+    margin-top: 200px;
+}
+#overlay-text{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+#enter-button{
+    margin-left: 600px;
+    position: absolute;
+    margin-top: 300px;
+    padding: 12px 30px; 
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #4ae60d, #07e91a); 
+    border: none;
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    opacity: 1;
+    z-index: 1;
+}
+#enter-button:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f); 
+    transform: translateY(-3px); 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+#enter-button:active {
+    transform: translateY(1px); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.glass-news {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-Left: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 1em;
+    margin-bottom: 2%;
+    display: flex;
+}
+.glass-news .class1,.glass-news .class2,.glass-news .class3{
+    flex: 1; 
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-Left: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+
+}
+
+
